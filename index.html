@@ -48,6 +48,53 @@
         .carousel {
             transition: transform 0.5s ease-in-out;
         }
+        /* Piano keys styles */
+        .piano-container {
+            position: relative;
+            width: 32rem; /* 8 white keys * 4rem */
+            height: 12rem;
+            margin: 0 auto;
+        }
+        .white-keys {
+            display: flex;
+            position: relative;
+            z-index: 1;
+        }
+        .white-key {
+            width: 4rem;
+            height: 12rem;
+            background-color: white;
+            border: 1px solid #000;
+            border-radius: 0 0 0.25rem 0.25rem;
+            position: relative;
+            z-index: 1;
+            margin-left: -1px; /* overlap borders */
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .white-key:hover {
+            background-color: #f0f0f0;
+        }
+        .black-key {
+            width: 2.5rem;
+            height: 8rem;
+            background-color: black;
+            border-radius: 0 0 0.25rem 0.25rem;
+            position: absolute;
+            top: 0;
+            z-index: 2;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .black-key:hover {
+            background-color: #333;
+        }
+        /* Positioning black keys between white keys */
+        .black-key[data-note="C#4"] { left: 3rem; }
+        .black-key[data-note="D#4"] { left: 7rem; }
+        .black-key[data-note="F#4"] { left: 15rem; }
+        .black-key[data-note="G#4"] { left: 19rem; }
+        .black-key[data-note="A#4"] { left: 23rem; }
     </style>
 </head>
 <body class="font-sans text-gray-800 bg-gray-50">
@@ -58,7 +105,7 @@
     <header class="bg-blue-900 text-white py-4 sticky top-0 z-10 shadow-lg">
         <nav class="container mx-auto flex justify-between items-center px-4">
             <h1 class="text-2xl font-bold flex items-center">
-                <span class="text-gold-400">Tinajero</span>  Piano Studio
+                <span class="text-gold-400">Tinajero</span> Piano Studio
             </h1>
             <ul class="flex space-x-6">
                 <li><a href="#home" class="hover:text-gold-400">Home</a></li>
@@ -81,15 +128,24 @@
 
     <!-- Piano Keys Animation -->
     <section class="py-8 bg-blue-900">
-        <div class="container mx-auto px-4 flex justify-center space-x-2">
-            <div class="piano-key bg-white w-12 h-24 rounded-b-lg cursor-pointer" data-note="C"></div>
-            <div class="piano-key bg-black w-8 h-16 rounded-b-lg cursor-pointer relative -ml-4 -mr-4 z-10" data-note="C#"></div>
-            <div class="piano-key bg-white w-12 h-24 rounded-b-lg cursor-pointer" data-note="D"></div>
-            <div class="piano-key bg-black w-8 h-16 rounded-b-lg cursor-pointer relative -ml-4 -mr-4 z-10" data-note="D#"></div>
-            <div class="piano-key bg-white w-12 h-24 rounded-b-lg cursor-pointer" data-note="E"></div>
-            <div class="piano-key bg-white w-12 h-24 rounded-b-lg cursor-pointer" data-note="F"></div>
-            <div class="piano-key bg-black w-8 h-16 rounded-b-lg cursor-pointer relative -ml-4 -mr-4 z-10" data-note="F#"></div>
-            <div class="piano-key bg-white w-12 h-24 rounded-b-lg cursor-pointer" data-note="G"></div>
+        <div class="container mx-auto px-4">
+            <div class="piano-container">
+                <div class="white-keys">
+                    <div class="piano-key white-key" data-note="C4"></div>
+                    <div class="piano-key white-key" data-note="D4"></div>
+                    <div class="piano-key white-key" data-note="E4"></div>
+                    <div class="piano-key white-key" data-note="F4"></div>
+                    <div class="piano-key white-key" data-note="G4"></div>
+                    <div class="piano-key white-key" data-note="A4"></div>
+                    <div class="piano-key white-key" data-note="B4"></div>
+                    <div class="piano-key white-key" data-note="C5"></div>
+                </div>
+                <div class="piano-key black-key" data-note="C#4"></div>
+                <div class="piano-key black-key" data-note="D#4"></div>
+                <div class="piano-key black-key" data-note="F#4"></div>
+                <div class="piano-key black-key" data-note="G#4"></div>
+                <div class="piano-key black-key" data-note="A#4"></div>
+            </div>
         </div>
     </section>
 
@@ -240,8 +296,10 @@
             key.addEventListener('mouseover', () => {
                 const note = key.dataset.note;
                 const freq = {
-                    'C': 261.63, 'C#': 277.18, 'D': 293.66, 'D#': 311.13,
-                    'E': 329.63, 'F': 349.23, 'F#': 369.99, 'G': 392.00
+                    'C4': 261.63, 'C#4': 277.18, 'D4': 293.66, 'D#4': 311.13,
+                    'E4': 329.63, 'F4': 349.23, 'F#4': 369.99, 'G4': 392.00,
+                    'G#4': 415.30, 'A4': 440.00, 'A#4': 466.16, 'B4': 493.88,
+                    'C5': 523.25
                 }[note];
                 const oscillator = ctx.createOscillator();
                 oscillator.type = 'sine';
