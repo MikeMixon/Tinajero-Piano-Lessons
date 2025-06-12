@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tinajero Piano Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for vibrant effects */
+        .parallax-bg {
+            background-image: url('https://images.unsplash.com/photo-1516321165247-4aa89a48d322?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+        .piano-key {
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .piano-key:hover {
+            transform: translateY(-5px);
+            background-color: #d4af37;
+        }
+        .card-hover {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .progress-bar {
+            height: 4px;
+            background: #d4af37;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 50;
+            transition: width 0.2s;
+        }
+        .carousel {
+            transition: transform 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50">
+    <!-- Progress Bar -->
+    <div id="progress-bar" class="progress-bar" style="width: 0;"></div>
+
+    <!-- Header -->
+    <header class="bg-blue-900 text-white py-4 sticky top-0 z-10 shadow-lg">
+        <nav class="container mx-auto flex justify-between items-center px-4">
+            <h1 class="text-2xl font-bold flex items-center">
+                <span class="text-gold-400">Tinajero</span>  Piano Studio
+            </h1>
+            <ul class="flex space-x-6">
+                <li><a href="#home" class="hover:text-gold-400">Home</a></li>
+                <li><a href="#services" class="hover:text-gold-400">Services</a></li>
+                <li><a href="#about" class="hover:text-gold-400">About</a></li>
+                <li><a href="#pricing" class="hover:text-gold-400">Pricing</a></li>
+                <li><a href="#contact" class="hover:text-gold-400">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="parallax-bg h-screen flex items-center justify-center text-white">
+        <div class="text-center bg-blue-900 bg-opacity-70 p-10 rounded-xl">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 fade-in">Tinajero Piano Studio</h2>
+            <p class="text-lg md:text-xl mb-6 fade-in">Master the art of piano with expert lessons in South Texas.</p>
+            <a href="#contact" class="bg-gold-400 hover:bg-gold-500 text-blue-900 py-2 px-6 rounded-full text-lg fade-in">Book a Lesson</a>
+        </div>
+    </section>
+
+    <!-- Piano Keys Animation -->
+    <section class="py-8 bg-blue-900">
+        <div class="container mx-auto px-4 flex justify-center space-x-2">
+            <div class="piano-key bg-white w-12 h-24 rounded-b-lg cursor-pointer" data-note="C"></div>
+            <div class="piano-key bg-black w-8 h-16 rounded-b-lg cursor-pointer relative -ml-4 -mr-4 z-10" data-note="C#"></div>
+            <div class="piano-key bg-white w-12 h-24 rounded-b-lg cursor-pointer" data-note="D"></div>
+            <div class="piano-key bg-black w-8 h-16 rounded-b-lg cursor-pointer relative -ml-4 -mr-4 z-10" data-note="D#"></div>
+            <div class="piano-key bg-white w-12 h-24 rounded-b-lg cursor-pointer" data-note="E"></div>
+            <div class="piano-key bg-white w-12 h-24 rounded-b-lg cursor-pointer" data-note="F"></div>
+            <div class="piano-key bg-black w-8 h-16 rounded-b-lg cursor-pointer relative -ml-4 -mr-4 z-10" data-note="F#"></div>
+            <div class="piano-key bg-white w-12 h-24 rounded-b-lg cursor-pointer" data-note="G"></div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 fade-in">Our Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-blue-50 p-6 rounded-lg card-hover fade-in">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-900">Private Lessons</h3>
+                    <p>Customized one-on-one sessions for all skill levels, tailored to your musical journey.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg card-hover fade-in">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-900">Group Lessons</h3>
+                    <p>Engaging group classes for beginners, fostering collaboration and fun.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg card-hover fade-in">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-900">Online Lessons</h3>
+                    <p>Flexible virtual lessons via Zoom, perfect for busy or remote students.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-8 fade-in">About Mr. Tinajero</h2>
+            <p class="text-lg max-w-2xl mx-auto fade-in">
+                Mr. Tinajero, a seasoned pianist and educator, brings a wealth of experience to his South Texas studio. With a passion for teaching and a background in classical and modern piano, he guides students of all ages toward musical excellence.
+            </p>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 fade-in">What Students Say</h2>
+            <div id="carousel" class="carousel flex overflow-hidden">
+                <div class="min-w-full text-center p-6 fade-in">
+                    <p class="text-lg italic mb-4">"Mr. Tinajero's lessons transformed my playing! His patience and expertise are unmatched."</p>
+                    <p class="font-semibold">— Sarah M., Houston</p>
+                </div>
+                <div class="min-w-full text-center p-6 fade-in">
+                    <p class="text-lg italic mb-4">"The group classes are so fun and affordable. I learned so much in just a few weeks!"</p>
+                    <p class="font-semibold">— James T., San Antonio</p>
+                </div>
+                <div class="min-w-full text-center p-6 fade-in">
+                    <p class="text-lg italic mb-4">"Online lessons with Mr. Tinajero fit perfectly into my busy schedule. Highly recommend!"</p>
+                    <p class="font-semibold">— Emily R., Corpus Christi</p>
+                </div>
+            </div>
+            <div class="flex justify-center space-x-4 mt-6">
+                <button id="prev-slide" class="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700">←</button>
+                <button id="next-slide" class="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700">→</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 fade-in">Pricing</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg card-hover text-center fade-in">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-900">Private Lessons</h3>
+                    <p class="text-2xl font-bold mb-4">$80 / hour</p>
+                    <p>Personalized instruction for all levels.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg card-hover text-center fade-in">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-900">Group Lessons</h3>
+                    <p class="text-2xl font-bold mb-4">$25 / 30 min</p>
+                    <p>Affordable classes for beginners.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg card-hover text-center fade-in">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-900">Online Lessons</h3>
+                    <p class="text-2xl font-bold mb-4">$65 / hour</p>
+                    <p>Convenient virtual instruction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 fade-in">Contact Tinajero Piano Studio</h2>
+            <form id="contact-form" class="max-w-lg mx-auto bg-gray-100 p-8 rounded-lg shadow-md fade-in">
+                <div class="mb-4">
+                    <label for="name" class="block text-lg font-medium mb-2">Name</label>
+                    <input type="text" id="name" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-400" required>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-lg font-medium mb-2">Email</label>
+                    <input type="email" id="email" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-400" required>
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="block text-lg font-medium mb-2">Message</label>
+                    <textarea id="message" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-400" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="bg-gold-400 hover:bg-gold-500 text-blue-900 py-3 px-6 rounded-full w-full">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2025 Tinajero Piano Studio. All rights reserved.</p>
+            <p class="mt-2">Contact: <a href="mailto:info@tinajeropiano.com" class="underline hover:text-gold-400">info@tinajeropiano.com</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Fade-in animation on scroll
+        const fadeIns = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        fadeIns.forEach(element => observer.observe(element));
+
+        // Scroll progress bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+        });
+
+        // Piano key sound effects
+        const pianoKeys = document.querySelectorAll('.piano-key');
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        pianoKeys.forEach(key => {
+            key.addEventListener('mouseover', () => {
+                const note = key.dataset.note;
+                const freq = {
+                    'C': 261.63, 'C#': 277.18, 'D': 293.66, 'D#': 311.13,
+                    'E': 329.63, 'F': 349.23, 'F#': 369.99, 'G': 392.00
+                }[note];
+                const oscillator = ctx.createOscillator();
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(freq, ctx.currentTime);
+                oscillator.connect(ctx.destination);
+                oscillator.start();
+                oscillator.stop(ctx.currentTime + 0.2);
+            });
+        });
+
+        // Testimonial carousel
+        const carousel = document.getElementById('carousel');
+        const slides = carousel.children;
+        let currentSlide = 0;
+        document.getElementById('next-slide').addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+        });
+        document.getElementById('prev-slide').addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+        });
+
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! Mr. Tinajero will respond soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
